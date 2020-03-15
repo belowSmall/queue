@@ -5,7 +5,7 @@ PS：下面介绍的队列是用链表实现的
 
 #### 1.首先先来一段代码。先看代码，再说为什么这样定义
 ##### ①定义队列节点
-```
+```c
 typedef struct _queue_node {
 	struct _queue_node *next;
 	KEY_TYPE key; // 这里是的KEY_TYPE是一个类型（可以为int，double之类的），先别管具体是什么类型
@@ -13,7 +13,7 @@ typedef struct _queue_node {
 ```
 上面是一个队列节点的定义，包含指向的下一个节点和当前节点的数据。
 ##### ②定义队列
-```
+```c
 typedef struct _queue {
 	queue_node *front;  // 指向队列头
 	queue_node *rear;   // 指向队列尾
@@ -27,7 +27,7 @@ typedef struct _queue {
 * **后面看代码的时候，会发现这样定义相当方便**
 
 #### 2.初始化
-```
+```c
 void init_queue(queue *q) {
 	q->front = q->rear = NULL;  // 初始化，将队列头和队列尾置空
 	q->queue_size = 0;  //  长度为0
@@ -35,7 +35,7 @@ void init_queue(queue *q) {
 ```
 
 #### 3.插入元素到队列尾
-```
+```c
 void push_queue(queue *q, KEY_TYPE key) {
 	assert(q); // 检查
 
@@ -61,7 +61,7 @@ void push_queue(queue *q, KEY_TYPE key) {
 }
 ```
 #### 4.取出队列头元素
-```
+```c
 void pop_queue(queue *q, KEY_TYPE *key) {
 	assert(q);
 	assert(q->front != NULL);   // 检查
@@ -84,7 +84,7 @@ void pop_queue(queue *q, KEY_TYPE *key) {
 ```
 
 #### 5.销毁队列
-```
+```c
 void destroy_queue(queue *q) {
 	queue_node *iter;  // 这个里先定义个迭代器
 	queue_node *next;
